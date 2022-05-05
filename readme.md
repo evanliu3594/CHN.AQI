@@ -1,4 +1,14 @@
-根据《环境空气质量标准（GB3095—2012）》的相关标准和方法，提供五个用于计算AQI的函数，分别为：独立AQI计算（时均），综合AQI计算（时均），日均浓度计算，独立AQI计算（日均），综合AQI计算（日均）。
+根据《环境空气质量指数（AQI）技术规定（HJ 633—2012）》的相关标准和方法，提供五个用于计算AQI的函数，分别为：
+- IAQI_hourly(Pollu,Conc)
+  - 用于计算时均空气质量分指数（individual air quality index，即IAQI）
+- AQI_Hourely(SO2,NO2,CO,O3)
+  - 用于计算时均空气污染综合指数（air quality index， 即AQI）
+- DaliyMeanConc(Conc)
+  - 根据24小时检测浓度求日均浓度
+- IAQI_Daily(Pollu,Conc)
+  - 用于计算日均AQI分指数
+- AQI_Daily(SO2,NO2,CO,PM10,PM2.5,O3)
+  - 用于计算日均AQI计算
 
 # 用法
 ## 1. 载入函数及基础用法

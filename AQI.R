@@ -1,10 +1,12 @@
 library(tidyverse)
 require(zoo)
 
-DaliyMeanConc <- function(Conc) Conc %>% summarise(
-  across(c(SO2,NO2,CO,PM2.5,PM10), mean),
-  across(O3,~ max(zoo::rollmean(O3,k = 8,fill = 0,align = 'right')))
-)
+DaliyMeanConc <- function(Conc) {
+  if (nrow(Conc) != 24) stop("请提供完整的每日24小时时均监测值！")
+  else Conc %>% summarise(
+    across(c(SO2, NO2, CO, PM2.5, PM10), mean),
+    across(O3,  ~ max(zoo::rollmean(O3, k = 8, fill = 0, align = 'right'))))
+}
 
 IAQI_hourly <- function(Pollu,Conc){
   
