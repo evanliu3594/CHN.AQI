@@ -49,28 +49,25 @@ AQI_Hourely <- function(SO2,NO2,CO,O3){
 
 IAQI_Daily <- function(Pollu,Conc) {
   
-  if (!Pollu %in% c('SO2','NO2','CO','O3','PM10','PM2.5')) {
-    stop(paste(Pollu, "不是1小时IAQI的计算项目",sep = ''))
-  } else {
-    AQI_table <- list(
-      AQI =   c(0,  50, 100, 150, 200,  300,  400,  500, Inf),
-      SO2 =   c(0,  50, 150, 475, 800, 1600, 2100, 2620, Inf),
-      NO2 =   c(0,  40,  80, 180, 280,  565,  750,  940, Inf),
-      O3 =    c(0, 100, 160, 215, 265,  800,  Inf),
-      CO =    c(0,   2,   4,  14,  24,   36,   48,   60, Inf),
-      PM10 =  c(0,  50, 150, 250, 350,  420,  500,  600, Inf),
-      PM2.5 = c(0,  35,  75, 115, 150,  250,  350,  500, Inf)
-    )
-    
-    i_min <- AQI_table[[Pollu]][which(AQI_table[[Pollu]] < Conc) |> tail(1)]
-    i_max <- AQI_table[[Pollu]][which(AQI_table[[Pollu]] >= Conc) |> head(1)]
-    
-    a_min <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] < Conc) |> tail(1)]
-    a_max <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] >= Conc) |> head(1)]
-    
-    if(i_max == Inf) return(Inf)
-    else return(a_min + (a_max - a_min) * (Conc - i_min) / (i_max - i_min))
-  }
+  AQI_table <- list(
+    AQI =   c(0,  50, 100, 150, 200,  300,  400,  500, Inf),
+    SO2 =   c(0,  50, 150, 475, 800, 1600, 2100, 2620, Inf),
+    NO2 =   c(0,  40,  80, 180, 280,  565,  750,  940, Inf),
+    O3 =    c(0, 100, 160, 215, 265,  800,  Inf),
+    CO =    c(0,   2,   4,  14,  24,   36,   48,   60, Inf),
+    PM10 =  c(0,  50, 150, 250, 350,  420,  500,  600, Inf),
+    PM2.5 = c(0,  35,  75, 115, 150,  250,  350,  500, Inf)
+  )
+  
+  i_min <- AQI_table[[Pollu]][which(AQI_table[[Pollu]] < Conc) |> tail(1)]
+  i_max <- AQI_table[[Pollu]][which(AQI_table[[Pollu]] >= Conc) |> head(1)]
+  
+  a_min <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] < Conc) |> tail(1)]
+  a_max <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] >= Conc) |> head(1)]
+  
+  if(i_max == Inf) return(Inf)
+  else return(a_min + (a_max - a_min) * (Conc - i_min) / (i_max - i_min))
+  
 }
 
 AQI_Daily <- function(SO2,NO2,CO,PM10,PM2.5,O3){
