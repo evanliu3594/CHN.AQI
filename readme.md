@@ -4,11 +4,11 @@
 - AQI_Hourely(SO2,NO2,CO,O3)
   - 用于计算时均空气污染综合指数（air quality index， 即AQI）
 - DaliyMeanConc(Conc)
-  - 根据24小时检测浓度求日均浓度
+  - 根据24小时监测数据浓度求各污染物日均浓度，其中臭氧为最大八小时平均浓度
 - IAQI_Daily(Pollu,Conc)
-  - 用于计算日均AQI分指数
+  - 用于计算日均IAQI
 - AQI_Daily(SO2,NO2,CO,PM10,PM2.5,O3)
-  - 用于计算日均AQI计算
+  - 用于计算日均AQI
 
 # 用法
 ## 1. 载入函数及基础用法
@@ -139,7 +139,7 @@ There were 48 warnings (use warnings() to see them)
 # ... with 14 more rows
 ```
 
-## 3. 求日均AQI及IAQI
+## 3. 求日均IAQI及AQI
 ```{r}
 > sample_daily_conc <- sampleConc |>  DaliyMeanConc()
 > sample_daily_conc
@@ -160,7 +160,8 @@ There were 48 warnings (use warnings() to see them)
 ```{r}
 > sample_daily_conc %>%
     mutate(
-      AQI_d = AQI_Daily(SO2 = SO2,NO2 = NO2,CO = CO,O3 = O3,PM10 = PM10 ,PM2.5 = PM2.5),
+      AQI_d = AQI_Daily(SO2 = SO2,NO2 = NO2,CO = CO,
+                        O3 = O3,PM10 = PM10 ,PM2.5 = PM2.5),
       .keep = 'none'
     )
 
