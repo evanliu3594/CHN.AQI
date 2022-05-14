@@ -1,4 +1,4 @@
-根据《环境空气质量指数（AQI）技术规定（HJ 633—2012）》的相关标准和方法，提供五个用于计算AQI的函数，分别为：
+根据中华人民共和国生态环境部《环境空气质量指数（AQI）技术规定（HJ 633—2012）》中的相关标准和方法，提供五个用于计算AQI的函数，分别为：
 - IAQI_hourly(Pollu,Conc)
   - 用于计算时均空气质量分指数（individual air quality index，即IAQI）
 - AQI_Hourely(SO2,NO2,CO,O3)
@@ -11,7 +11,7 @@
   - 用于计算日均AQI
 
 # 用法
-## 1. 载入函数及基础用法
+## 1. 基本用法
 
 ```{r}
 > source('AQI.R',encoding = 'UTF8')
@@ -41,14 +41,13 @@ The following objects are masked from ‘package:base’:
     IAQI_CO = IAQI_hourly('CO',100),
     IAQI_O3 = IAQI_hourly('O3',120)
   )
-
-# IAQI_SO2  IAQI_NO2   IAQI_CO   IAQI_O3 
-# 71.42857 100.00000 333.33333  37.50000 
+IAQI_SO2  IAQI_NO2   IAQI_CO   IAQI_O3 
+71.42857 100.00000 333.33333  37.50000 
 ```
 
 ```{r}
 > AQI_Hourely(SO2 = 300,NO2 = 200,CO = 100,O3 = 120)
-# [1] 333.3333
+[1] 333.3333
 ```
 
 日均AQI及IAQI的计算方法类似，不再重复了。

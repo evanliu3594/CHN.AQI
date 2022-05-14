@@ -33,7 +33,7 @@ IAQI_hourly <- function(Pollu,Conc){
     a_min <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] < Conc) |> tail(1)]
     a_max <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] >= Conc) |> head(1)]
     
-    if(i_max == Inf) return(Inf)
+    if (i_max == Inf) return(Inf)
     else return(a_min + (a_max - a_min) * (Conc - i_min) / (i_max - i_min))
   }
 }
@@ -65,7 +65,7 @@ IAQI_Daily <- function(Pollu,Conc) {
   a_min <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] < Conc) |> tail(1)]
   a_max <- AQI_table[["AQI"]][which(AQI_table[[Pollu]] >= Conc) |> head(1)]
   
-  if(i_max == Inf) return(Inf)
+  if (i_max == Inf) return(Inf)
   else return(a_min + (a_max - a_min) * (Conc - i_min) / (i_max - i_min))
   
 }
